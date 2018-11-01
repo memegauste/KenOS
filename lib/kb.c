@@ -44,6 +44,9 @@ void keyboard_handler(struct regs *r)
             char key_result = scancode[key];
             if(isShiftPressed){
                 key_result -= 32;
+                if(key_result < 'A' || key_result > 'Z'){
+                    key_result = 0;
+                }
             }
             terminal_putchar(key_result);
             command[ptr] = key_result;
