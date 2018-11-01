@@ -29,5 +29,6 @@ build/boot.o: boot.asm
 clean:
 	rm -rf build
 	rm kenos.bin
+	rm build/*
 	rm isodir/boot/kenos.bin
 	rm kenos.iso
