@@ -9,57 +9,64 @@ int strcmp(const char* s1, const char* s2){
     return *(const unsigned char*)s1 - *(const unsigned char*)s2;
 }
 
+void gen_space(short int i){
+    while(i>0){
+        terminal_putchar(' ');
+        i--;
+    }
+}
+
 void kenfetch(){
     terminal_writestring("\n**********");
-        terminal_writestring("                            ");
-        terminal_setcolor(VGA_COLOR_LIGHT_MAGENTA);
-        terminal_writestring("hoshi@devkit\n");
-        terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-        terminal_writestring(" *      *");
-        terminal_writestring("                             ");
-        terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-        terminal_writestring("OS: ");
-        terminal_setcolor(VGA_COLOR_WHITE);
-        terminal_writestring("KenOS ver 0.001 i686\n");
-        terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-        terminal_writestring("  *    *");
-        terminal_writestring("                              ");
-        terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-        terminal_writestring("Shell: ");
-        terminal_setcolor(VGA_COLOR_WHITE);
-        terminal_writestring("Simpell\n");
-        terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-        terminal_writestring("   *  *");
-        terminal_writestring("                               ");
-        terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-        terminal_writestring("Packages: ");
-        terminal_setcolor(VGA_COLOR_WHITE);
-        terminal_writestring("0\n");
-        terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-        terminal_writestring("  ******");
-        terminal_writestring("                              ");
-        terminal_writestring("\n");
-        terminal_writestring("  * ** *");
-        terminal_writestring("                              ");
-        terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-        terminal_writestring("Colors: ");
-        terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-        terminal_writestring("\n");
-        terminal_writestring("  ******");
-        terminal_writestring("                              ");
-        terminal_setcolor(VGA_COLOR_LIGHT_BLUE);
-        terminal_putchar(219);
-        terminal_setcolor(VGA_COLOR_LIGHT_GREEN);
-        terminal_putchar(219);
-        terminal_setcolor(VGA_COLOR_LIGHT_CYAN);
-        terminal_putchar(219);
-        terminal_setcolor(VGA_COLOR_LIGHT_RED);
-        terminal_putchar(219);
-        terminal_setcolor(VGA_COLOR_LIGHT_MAGENTA);
-        terminal_putchar(219);
-        terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-        terminal_putchar(219);
-        terminal_writestring("\n");
+    gen_space(28);
+    terminal_setcolor(VGA_COLOR_LIGHT_MAGENTA);
+    terminal_writestring("hoshi@devkit\n");
+    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
+    terminal_writestring(" *      * ");
+    gen_space(28);
+    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
+    terminal_writestring("OS: ");
+    terminal_setcolor(VGA_COLOR_WHITE);
+    terminal_writestring("KenOS ver 0.001 i686\n");
+    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
+    terminal_writestring("  *    *  ");
+    gen_space(28);
+    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
+    terminal_writestring("Shell: ");
+    terminal_setcolor(VGA_COLOR_WHITE);
+    terminal_writestring("Simpell\n");
+    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
+    terminal_writestring("   *  *   ");
+    gen_space(28);
+    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
+    terminal_writestring("Packages: ");
+    terminal_setcolor(VGA_COLOR_WHITE);
+    terminal_writestring("0\n");
+    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
+    terminal_writestring("  ******  ");
+    gen_space(28);
+    terminal_writestring("\n");
+    terminal_writestring("  * ** *  ");
+    gen_space(28);
+    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
+    terminal_writestring("Colors: ");
+    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
+    terminal_writestring("\n");
+    terminal_writestring("  ******  ");
+    gen_space(28);
+    terminal_setcolor(VGA_COLOR_LIGHT_BLUE);
+    terminal_putchar(219);
+    terminal_setcolor(VGA_COLOR_LIGHT_GREEN);
+    terminal_putchar(219);
+    terminal_setcolor(VGA_COLOR_LIGHT_CYAN);
+    terminal_putchar(219);
+    terminal_setcolor(VGA_COLOR_LIGHT_RED);
+    terminal_putchar(219);
+    terminal_setcolor(VGA_COLOR_LIGHT_MAGENTA);
+    terminal_putchar(219);
+    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
+    terminal_putchar(219);
+    terminal_writestring("\n");
 }
 
 void execute(unsigned char *command){
