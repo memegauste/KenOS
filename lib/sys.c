@@ -29,8 +29,8 @@ void reboot(){
     
     do{
         temp = inb(0x64);
-        if((temp) & (1<<(0)) != 0) inb(0x60);
-    } while((temp) & (1<<(1)) != 0);
+        if(temp & ((1<<(0)) != 0)) inb(0x60);
+    } while(temp & ((1<<(1)) != 0));
  
     outb(0x64, 0xFE);
 loop:
