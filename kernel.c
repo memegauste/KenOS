@@ -5,7 +5,7 @@
 #include <idt.h>
 #include <isr.h>
 #include <timer.h>
-uint32_t cpuCode;
+uint32_t cpuCode[4];
 
 #if defined(__cplusplus)
 extern "C"
@@ -29,7 +29,7 @@ void kernel_main(void)
     terminal_writestring("Welcome, Hoshi!\n");
     terminal_setcolor(VGA_COLOR_LIGHT_BLUE);
     terminal_writestring("Hardware info: ");
-    terminal_writestring(cpuid_string(0, cpuCode));
+    terminal_writestring((const char*)cpuid_string(0, cpuCode));
     terminal_writestring("\n");
     terminal_setcolor(VGA_COLOR_WHITE);
     terminal_writestring("[@Hoshi]>");

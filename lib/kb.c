@@ -38,7 +38,7 @@ void keyboard_handler(struct regs *r)
             ptr--;
             command[ptr] = '\0';
         } else if(scancode[key] == '\n'){
-            execute(command);
+            execute((const char*)command);
             clean_command();
         } else if (ptr < 70 && scancode[key] != '\b'){
             char key_result = scancode[key];

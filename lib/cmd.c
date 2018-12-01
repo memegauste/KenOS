@@ -69,7 +69,7 @@ void kenfetch(){
     terminal_writestring("\n");
 }
 
-void execute(unsigned char *command){
+void execute(const char *command){
     terminal_setcolor(VGA_COLOR_CYAN);
     if(!strcmp(command, "help")){
         terminal_writestring("\nCommands: help, shell, user, kenfetch, osinfo, cls, reboot\n");

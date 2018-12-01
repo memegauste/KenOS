@@ -1,7 +1,7 @@
 #include <timer.h>
 #include <regs.h>
 
-int timer_ticks = 0;
+unsigned int timer_ticks = 0;
 
 void timer_handler(struct regs *r){
     timer_ticks++;
@@ -14,8 +14,8 @@ void timer_install(){
     irq_install_handler(0, timer_handler);
 }
 
-void timer_wait(int ticks){
-    unsigned long eticks;
+void timer_wait(unsigned int ticks){
+    unsigned int eticks;
 
     eticks = timer_ticks + ticks;
     while(timer_ticks < eticks);
