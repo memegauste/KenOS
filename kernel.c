@@ -5,19 +5,20 @@
 #include <idt.h>
 #include <isr.h>
 #include <timer.h>
+#include <serial.h>
 uint32_t cpuCode[4];
 
 #if defined(__cplusplus)
 extern "C"
 #endif
-void kernel_main(void) 
-{
+void kernel_main(void){
 	terminal_initialize();
     gdt_install();
     idt_install();
     isrs_install();
     irq_install();
     keyboard_install();
+    serial_install();
     
     terminal_setcolor(VGA_COLOR_GREEN);
     terminal_writestring("Ken");
