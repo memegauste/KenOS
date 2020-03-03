@@ -34,9 +34,16 @@ char read_serial(){
    return inb(PORT);
 }
 
+void write_serialstring(const char *data){
+    for (size_t i = 0; i < strlen(data); i++)
+        write_serial(data[i]);
+}
+
 void serial_handler(struct regs *r){
     char key = read_serial();
+    write_serialstring("kenOS: ");
     write_serial(key);
+    write_serial('\n');
 }
 
 /* Installs the serial handler into IRQ4.*/
