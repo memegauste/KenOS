@@ -5,6 +5,7 @@
 #include <sys.h>
 #include <irq.h>
 #include <cmd.h>
+#include <serial.h>
 unsigned char command[70];
 unsigned short int ptr = 0;
 bool isShiftPressed = 0;
@@ -16,8 +17,7 @@ void clean_command(){
     ptr = 0;
 }
 
-void keyboard_handler(struct regs *r)
-{
+void keyboard_handler(struct regs *r){
     unsigned char key;
 
     key = inb(0x60);
@@ -53,11 +53,11 @@ void keyboard_handler(struct regs *r)
             ptr++;
         }
     }
+    write_serial(key);
 }
 
 /* Installs the keyboard handler into IRQ1 */
-void keyboard_install()
-{
+void keyboard_install(){
     irq_install_handler(1, keyboard_handler);
 
     clean_command();
