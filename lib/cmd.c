@@ -1,6 +1,10 @@
 #include <cmd.h>
 #include <sys.h>
 #include <data/kenfetch.h>
+#include <stdbool.h>
+#include <vga.h>
+#define KENOUT 1
+#define SERIAL 2
 
 int strcmp(const char* s1, const char* s2){
     while(*s1 && (*s1 == *s2)){
@@ -10,39 +14,42 @@ int strcmp(const char* s1, const char* s2){
     return *(const unsigned char*)s1 - *(const unsigned char*)s2;
 }
 
-void gen_space(short int i){
-    while(i>0){
-        terminal_putchar(' ');
-        i--;
-    }
+const char* neofetch(){
+    return kenfetch;
 }
 
-void neofetch(){
-    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-    for(int i = 0; i < strlen)
-}
-
-void execute(const char *command){
-    terminal_setcolor(VGA_COLOR_CYAN);
+const char* execute(const char *command){
     if(!strcmp(command, "help")){
-        terminal_writestring("\nCommands: help, shell, user, kenfetch, osinfo, cls, reboot\n");
+        return "Commands: help, shell, user, kenfetch, osinfo, cls, reboot";
     } else if(!strcmp(command, "shell")){
-        terminal_writestring("\nYou are using Simpell, that means simple shell\n");
+        return "You are using Simpell, that means simple shell";
     } else if(!strcmp(command, "user")){
-        terminal_writestring("\nUser: Hoshi\n");
-    } else if(!strcmp(command, "kenfetch")){
-        neofetch();
+        return "User: Hoshi";
+    // } else if(!strcmp(command, "kenfetch")){
+    //     return neofetch();
     } else if(!strcmp(command, "osinfo")){
-        terminal_writestring("\nKenOS, developed in mistery environment\n");
+        return "KenOS, developed in mistery environment";
     } else if(!strcmp(command, "reboot")){
-        terminal_writestring("\nPreparing to reboot...\n");
         reboot();
     } else if(!strcmp(command, "cls")){
         terminal_clean();
     } else {
-        terminal_writestring("\nNot known command, sorry mate!\n");
+        return "Not known command, sorry mate!";
     }
-    terminal_setcolor(VGA_COLOR_WHITE);
-    terminal_writestring("[@Hoshi]>");
-    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
 }
+
+int execution_router(const char *command, unsigned short int source){
+    if(source == KENOUT){
+        terminal_setcolor(VGA_COLOR_WHITE);
+        terminal_putchar('\n');
+        terminal_writestring(execute(command));
+        terminal_writestring("\n[@Hoshi]>");
+        terminal_setcolor(VGA_COLOR_LIGHT_GREY);
+    } else if (source == SERIAL && strcmp(command, "reboot") && strcmp(command, "cls")){
+        write_serialstring("KenOutput: {");
+        write_serialstring(execute(command));
+        write_serialstring("}\n");
+    }
+    return 0;
+}
+
