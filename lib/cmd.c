@@ -45,10 +45,14 @@ int execution_router(const char *command, unsigned short int source){
         terminal_writestring(execute(command));
         terminal_writestring("\n[@Hoshi]>");
         terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-    } else if (source == SERIAL && strcmp(command, "reboot") && strcmp(command, "cls")){
-        write_serialstring("KenOutput: {");
-        write_serialstring(execute(command));
-        write_serialstring("}\n");
+    } else if (source == SERIAL){
+        if(!strcmp(command, "reboot") || !strcmp(command, "cls"))
+            write_serialstring("KenOutput: {Invalid permissions!}\n");
+        else{
+            write_serialstring("KenOutput: {");
+            write_serialstring(execute(command));
+            write_serialstring("}\n");
+        }
     }
     return 0;
 }
