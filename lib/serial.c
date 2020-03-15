@@ -39,11 +39,23 @@ void write_serialstring(const char *data){
         write_serial(data[i]);
 }
 
+newSerialCommand = 1;
+char serialCommandBuffer[256];
+
 void serial_handler(struct regs *r){
     char key = read_serial();
-    write_serialstring("kenOS: ");
-    write_serial(key);
-    write_serial('\n');
+    if(newSerialCommand){
+       write_serialstring("discorify: {");
+       newSerialCommand = 0;
+    }
+    else if(key = '\n'){
+      serialCommandBuffer = '';
+      write_serial('}\n');
+      newSerialCommand = 1;
+   } else {
+      serialCommandBuffer += key;
+      write_serial(key);
+   }
 }
 
 /* Installs the serial handler into IRQ4.*/

@@ -1,5 +1,6 @@
 #include <cmd.h>
 #include <sys.h>
+#include <data/kenfetch.h>
 
 int strcmp(const char* s1, const char* s2){
     while(*s1 && (*s1 == *s2)){
@@ -16,57 +17,9 @@ void gen_space(short int i){
     }
 }
 
-void kenfetch(){
-    terminal_writestring("\n**********");
-    gen_space(28);
-    terminal_setcolor(VGA_COLOR_LIGHT_MAGENTA);
-    terminal_writestring("hoshi@devkit\n");
+void neofetch(){
     terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-    terminal_writestring(" *      * ");
-    gen_space(28);
-    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-    terminal_writestring("OS: ");
-    terminal_setcolor(VGA_COLOR_WHITE);
-    terminal_writestring("KenOS ver 0.001 i686\n");
-    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-    terminal_writestring("  *    *  ");
-    gen_space(28);
-    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-    terminal_writestring("Shell: ");
-    terminal_setcolor(VGA_COLOR_WHITE);
-    terminal_writestring("Simpell\n");
-    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-    terminal_writestring("   *  *   ");
-    gen_space(28);
-    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-    terminal_writestring("Packages: ");
-    terminal_setcolor(VGA_COLOR_WHITE);
-    terminal_writestring("0\n");
-    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-    terminal_writestring("  ******  ");
-    gen_space(28);
-    terminal_writestring("\n");
-    terminal_writestring("  * ** *  ");
-    gen_space(28);
-    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-    terminal_writestring("Colors: ");
-    terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-    terminal_writestring("\n");
-    terminal_writestring("  ******  ");
-    gen_space(28);
-    terminal_setcolor(VGA_COLOR_LIGHT_BLUE);
-    terminal_putchar(219);
-    terminal_setcolor(VGA_COLOR_LIGHT_GREEN);
-    terminal_putchar(219);
-    terminal_setcolor(VGA_COLOR_LIGHT_CYAN);
-    terminal_putchar(219);
-    terminal_setcolor(VGA_COLOR_LIGHT_RED);
-    terminal_putchar(219);
-    terminal_setcolor(VGA_COLOR_LIGHT_MAGENTA);
-    terminal_putchar(219);
-    terminal_setcolor(VGA_COLOR_LIGHT_BROWN);
-    terminal_putchar(219);
-    terminal_writestring("\n");
+    for(int i = 0; i < strlen)
 }
 
 void execute(const char *command){
@@ -78,8 +31,7 @@ void execute(const char *command){
     } else if(!strcmp(command, "user")){
         terminal_writestring("\nUser: Hoshi\n");
     } else if(!strcmp(command, "kenfetch")){
-        terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-        kenfetch();
+        neofetch();
     } else if(!strcmp(command, "osinfo")){
         terminal_writestring("\nKenOS, developed in mistery environment\n");
     } else if(!strcmp(command, "reboot")){

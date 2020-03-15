@@ -1,2 +1,2 @@
 #!/bin/sh
-qemu-system-i386 -serial stdio kenos.iso
+qemu-system-i386 -serial stdio -drive file=kenos.iso,index=0,format=raw
