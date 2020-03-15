@@ -1,8 +1,9 @@
 #include <sys.h>
 #define PORT 0x3f8   /* COM1 */
 #include <vga.h>
+#include <scancode.h>
 #define SERIAL 2
-char serialCommandBuffer[70];
+unsigned char serialCommandBuffer[70];
 unsigned short int serialPtr = 0;
 
 void init_serial(){
@@ -52,10 +53,10 @@ void clean_serial(){
 void serial_handler(struct regs *r){
     char key = read_serial();
     if(key == '\n'){
-       execution_router((const char*)serialCommandBuffer, SERIAL);
+       execution_router(serialCommandBuffer, SERIAL);
        clean_serial();
     }
-    else if(serialPtr < 68){
+    else if(serialPtr < 70){
        serialCommandBuffer[serialPtr] = key;
        serialPtr++;
     }
