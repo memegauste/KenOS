@@ -2,6 +2,7 @@
 import pexpect
 import discord
 import sys
+import time
 from discord.ext import commands
 from json_utils import read_json_file
 
@@ -14,7 +15,7 @@ kenOS.logfile_read = sys.stdout.buffer
 
 @bot.command()
 async def kenify(ctx, arg, *args):
-    kenOS.sendline(ctx.message.content[8:] + '\n')
+    kenOS.sendline(ctx.message.content[8:])
     kenOS.expect(r'KenOutput: {(.*?)}')
     response = kenOS.match
     await ctx.send(response.group(1).decode('utf-8'))
