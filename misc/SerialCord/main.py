@@ -6,14 +6,14 @@ import sys
 from discord.ext import commands
 desc = "SerialCord MikserCompany 2020"
 bot = commands.Bot(command_prefix="/", description=desc)
-kenOS = pexpect.spawn('qemu-system-i386 -serial stdio ../../kenos.iso')
+kenOS = pexpect.spawn('qemu-system-i386 -serial stdio file=../../kenos.iso,index=0,format=raw')
 kenOS.logfile_read = sys.stdout.buffer
+
 
 @bot.command()
 async def kenify(ctx, arg, *args):
-    print(ctx.message.content[8:])
-    kenOS.send(ctx.message.content[8:])
-    kenOS.expect('kenOS: ')
+    kenOS.sendline(ctx.message.content[8:])
+    kenOS.expect(r'discorify: {(.*?)}')
     response = kenOS.before
     await ctx.send(response)
 
