@@ -35,7 +35,7 @@ void kernel_main(void){
     terminal_setcolor(VGA_COLOR_WHITE);
     terminal_writestring("[@Hoshi]>");
     terminal_setcolor(VGA_COLOR_LIGHT_GREY);
-    write_serialstring("kenOS 0.001 serial debugger");
+    write_serialstring("kenOS 0.001 serial debugger\n");
 
     __asm__ __volatile__ ("sti");
     for(;;);

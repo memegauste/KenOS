@@ -7,6 +7,7 @@ void write_serial(char a);
 int serial_received();
 char read_serial();
 void write_serialstring(const char *data);
+void clean_serial();
 void serial_handler();
 void serial_install();
 

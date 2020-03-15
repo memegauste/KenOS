@@ -5,7 +5,7 @@
 #include <sys.h>
 #include <irq.h>
 #include <cmd.h>
-#include <serial.h>
+#define KENOUT 1
 unsigned char command[70];
 unsigned short int ptr = 0;
 bool isShiftPressed = 0;
@@ -38,7 +38,7 @@ void keyboard_handler(struct regs *r){
             ptr--;
             command[ptr] = '\0';
         } else if(scancode[key] == '\n'){
-            execute((const char*)command);
+            execution_router((const char*)command, KENOUT);
             clean_command();
         } else if (ptr < 70 && scancode[key] != '\b'){
             char key_result = scancode[key];
@@ -53,7 +53,6 @@ void keyboard_handler(struct regs *r){
             ptr++;
         }
     }
-    write_serial(key);
 }
 
 /* Installs the keyboard handler into IRQ1 */

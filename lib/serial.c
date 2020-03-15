@@ -1,6 +1,9 @@
 #include <sys.h>
 #define PORT 0x3f8   /* COM1 */
 #include <vga.h>
+#define SERIAL 2
+char serialCommandBuffer[70];
+unsigned short int serialPtr = 0;
 
 void init_serial(){
    outb(PORT + 1, 0x00);    // Disable all interrupts
@@ -39,23 +42,23 @@ void write_serialstring(const char *data){
         write_serial(data[i]);
 }
 
-newSerialCommand = 1;
-char serialCommandBuffer[256];
+void clean_serial(){
+    for(short unsigned i = 0; i < 70; i++){
+        serialCommandBuffer[i] = '\0';
+    }
+    serialPtr = 0;
+}
 
 void serial_handler(struct regs *r){
     char key = read_serial();
-    if(newSerialCommand){
-       write_serialstring("discorify: {");
-       newSerialCommand = 0;
+    if(key == '\n'){
+       execution_router((const char*)serialCommandBuffer, SERIAL);
+       clean_serial();
     }
-    else if(key = '\n'){
-      serialCommandBuffer = '';
-      write_serial('}\n');
-      newSerialCommand = 1;
-   } else {
-      serialCommandBuffer += key;
-      write_serial(key);
-   }
+    else if(serialPtr < 68){
+       serialCommandBuffer[serialPtr] = key;
+       serialPtr++;
+    }
 }
 
 /* Installs the serial handler into IRQ4.*/
