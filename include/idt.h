@@ -15,8 +15,8 @@ struct idt_ptr{
     unsigned int base;
 } __attribute__((packed));
 
-struct idt_entry idt[256];
-struct idt_ptr idtp;
+extern struct idt_entry idt[256];
+extern struct idt_ptr idtp;
 extern void idt_load();
 
 void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags);

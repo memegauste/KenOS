@@ -4,7 +4,7 @@
 #include <vga.h>
 #include <irq.h>
 
-unsigned int timer_ticks;
+extern unsigned int timer_ticks;
 void timer_handler(struct regs *r);
 void timer_install();
 void timer_wait(unsigned int ticks);
