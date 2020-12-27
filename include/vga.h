@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-enum vga_color{
+extern enum vga_color{
 	VGA_COLOR_BLACK = 0,
 	VGA_COLOR_BLUE = 1,
 	VGA_COLOR_GREEN = 2,

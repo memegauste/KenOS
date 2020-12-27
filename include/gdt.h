@@ -15,8 +15,8 @@ struct gdt_ptr{
     unsigned int base;
 } __attribute__((packed));
 
-struct gdt_entry gdt[3];
-struct gdt_ptr gp;
+extern struct gdt_entry gdt[3];
+extern struct gdt_ptr gp;
 extern void gdt_flush();
 void gdt_set_gate(int num, unsigned long base, unsigned long limit, unsigned char access, unsigned char gran);
 void gdt_install();

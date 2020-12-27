@@ -38,5 +38,7 @@ void kernel_main(void){
     write_serialstring("kenOS 0.001 serial debugger\n");
 
     __asm__ __volatile__ ("sti");
-    for(;;);
+    for(;;) {
+        asm("hlt");
+    }
 }

@@ -2,6 +2,9 @@
 #include <regs.h>
 #include <stddef.h>
 
+struct idt_entry idt[256];
+struct idt_ptr idtp;
+
 void* memset(void *s, int c, size_t len){
     unsigned char *dst = s;
     while(len > 0){

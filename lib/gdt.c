@@ -1,5 +1,8 @@
 #include <gdt.h>
 
+struct gdt_entry gdt[3];
+struct gdt_ptr gp;
+
 void gdt_set_gate(int num, unsigned long base, unsigned long limit, unsigned char access, unsigned char gran)
 {
     gdt[num].base_low = (base & 0xFFFF);
