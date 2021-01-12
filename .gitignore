@@ -2,3 +2,6 @@ build
 isodir/boot/kenos.bin
 kenos.bin
 kenos.iso
+screen.sh
+.pyc
+config.json
