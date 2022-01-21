@@ -1,4 +1,4 @@
-![KenOS_logo](logo.png)
+![KenOS_logo](logo.png =480x240)
 ![KenOS_preview](preview.png)
 ## Rework with better future of my previous operating system, called ????OS.
 
