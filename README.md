@@ -1,4 +1,4 @@
-# KenOS
+![KenOS_logo](logo.png)
 ![KenOS_preview](preview.png)
 ## Rework with better future of my previous operating system, called ????OS.
 
