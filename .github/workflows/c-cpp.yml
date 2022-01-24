@@ -1,0 +1,22 @@
+name: OSDev CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build and test KenOS
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run tests
+      run: cat $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
+           docker pull hoshiyamazaki/kenos-build:alphadocker
+           docker run -w ./ hoshiyamazaki/kenos-build:alphadocker make
