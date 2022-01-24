@@ -13,6 +13,7 @@ jobs:
     env:
       DOCKER_USER: ${{ secrets.DOCKER_USER }}
       DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      GITHUB_DIR: ${{ github.workspace }}
 
     steps:
     - uses: actions/checkout@v2
@@ -20,4 +21,4 @@ jobs:
       run: |
         echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
         docker pull hoshiyamazaki/kenos-build:alphadocker
-        docker run -w ${{ github.workspace }} hoshiyamazaki/kenos-build:alphadocker make
+        docker run -w $GITHUB_DIR -v $GITHUB_DIR:$GITHUB_DIR hoshiyamazaki/kenos-build:alphadocker make
