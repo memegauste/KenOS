@@ -20,4 +20,4 @@ jobs:
       run: |
         echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
         docker pull hoshiyamazaki/kenos-build:alphadocker
-        docker run -w ./ hoshiyamazaki/kenos-build:alphadocker make
+        docker run -w ${{ github.workspace }} hoshiyamazaki/kenos-build:alphadocker make
