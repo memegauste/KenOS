@@ -2,12 +2,17 @@
 import pexpect
 import discord
 import sys
-import time
 from discord.ext import commands
 from json_utils import read_json_file
 
-desc = "SerialCord 2022"
-bot = commands.Bot(command_prefix="/", description=desc)
+desc = 'SerialCord 2022'
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(
+    intents=intents,
+    command_prefix='/',
+    description=desc,
+)
 config = read_json_file('config.json')
 kenOS = pexpect.spawn('qemu-system-i386 -serial stdio -drive file=../../kenos.iso,index=0,media=disk,format=raw')
 kenOS.logfile_read = sys.stdout.buffer
