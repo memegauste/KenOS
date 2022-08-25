@@ -1,4 +1,12 @@
-![KenOS_logo](logo.png)
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
+![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+
+<p align="center">
+  <img src="https://github.com/PSzczepanski1996/KenOS/blob/master/logo.png"/>
+</p>
+
 ![KenOS_preview](preview.png)
 ## Rework with better future of my previous operating system.
 
