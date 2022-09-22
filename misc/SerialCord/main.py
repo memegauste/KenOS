@@ -11,6 +11,7 @@ intents.message_content = True
 bot = commands.Bot(
     intents=intents,
     command_prefix='/',
+    activity=discord.Game('KenOS Pre-Alpha'),
     description=desc,
 )
 config = read_json_file('config.json')
