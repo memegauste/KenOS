@@ -8,10 +8,11 @@ from json_utils import read_json_file
 desc = 'SerialCord 2022'
 intents = discord.Intents.default()
 intents.message_content = True
+activity = discord.Game('KenOS Pre-Alpha')
 bot = commands.Bot(
     intents=intents,
     command_prefix='/',
-    activity=discord.Game('KenOS Pre-Alpha'),
+    activity=activity,
     description=desc,
 )
 config = read_json_file('config.json')
