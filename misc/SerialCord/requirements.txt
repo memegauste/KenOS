@@ -1,2 +1,2 @@
-discord.py==2.1.1
+discord.py==2.2.2
 pexpect==4.8.0
