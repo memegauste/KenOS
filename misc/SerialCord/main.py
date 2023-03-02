@@ -39,7 +39,7 @@ async def on_ready():
 
 @tree.command(description='Kenify input to SerialCord')
 async def kenify(interaction, msg: str):
-    kenOS.sendline(msg[8:])
+    kenOS.sendline(msg[:8])
     kenOS.expect(r'KenOutput: {(.*?)}')
     response = kenOS.match
     await interaction.response.send_message(
