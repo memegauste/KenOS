@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  kenos:
+    container_name: kenos
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /code/misc/SerialCord
+    command: python3.12 main.py
+    volumes:
+      - .:/code
+#    env_file:
+#      - .env

@@ -5,3 +5,4 @@ kenos.iso
 screen.sh
 .pyc
 config.json
+.env
