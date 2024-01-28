@@ -27,7 +27,9 @@ client = discord.Client(
 )
 tree = app_commands.CommandTree(client)
 config = read_json_file('config.json')
-kenOS = pexpect.spawn('qemu-system-i386 -serial stdio -drive file=../../kenos.iso,index=0,media=disk,format=raw')
+kenOS = pexpect.spawn(
+    'qemu-system-i386 -serial stdio -drive file=../../kenos.iso,index=0,media=disk,format=raw',
+)
 kenOS.logfile_read = sys.stdout.buffer
 
 
@@ -40,7 +42,7 @@ async def on_ready():
 @tree.command(description='Kenify input to SerialCord')
 async def kenify(interaction, msg: str):
     kenOS.sendline(msg[:8])
-    kenOS.expect(r'KenOutput: {(.*?)}')
+    kenOS.expect([pexpect.TIMEOUT, r'KenOutput: {(.*?)}', pexpect.EOF])
     response = kenOS.match
     await interaction.response.send_message(
         response.group(1).decode('utf-8'),
