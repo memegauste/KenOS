@@ -28,7 +28,7 @@ client = discord.Client(
 tree = app_commands.CommandTree(client)
 config = read_json_file('config.json')
 kenOS = pexpect.spawn(
-    'qemu-system-i386 -serial stdio -drive file=../../kenos.iso,index=0,media=disk,format=raw',
+    'qemu-system-i386 -nographic -serial stdio -drive file=../../kenos.iso,index=0,media=disk,format=raw',
 )
 kenOS.logfile_read = sys.stdout.buffer
 
