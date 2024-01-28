@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM hoshiyamazaki/kenos-build:alphadocker
+FROM ubuntu:jammy
 WORKDIR /code
 ARG DEBIAN_FRONTEND=noninteractive
 COPY ./docker-scripts.sh /code/docker-scripts.sh
