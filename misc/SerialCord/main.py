@@ -44,8 +44,13 @@ async def kenify(interaction, msg: str):
     kenOS.sendline(msg[:8])
     kenOS.expect([pexpect.TIMEOUT, r'KenOutput: {(.*?)}', pexpect.EOF])
     response = kenOS.match
-    await interaction.response.send_message(
-        response.group(1).decode('utf-8'),
-    )
+    try:
+        await interaction.response.send_message(
+            response.group(1).decode('utf-8'),
+        )
+    except BaseException as e:
+        await interaction.response.send_message(
+            f'Error: {e}',
+        )
 
 client.run(config['token'])
