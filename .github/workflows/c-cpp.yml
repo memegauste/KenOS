@@ -22,3 +22,9 @@ jobs:
         echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
         docker pull hoshiyamazaki/kenos-build:alphadocker
         docker run -w $GITHUB_DIR -v $GITHUB_DIR:$GITHUB_DIR hoshiyamazaki/kenos-build:alphadocker /bin/bash -c "make -j$(nproc) -k"
+
+    - uses: actions/upload-artifact@v4
+      name: Upload current KenOS build
+      with:
+        name: kenos.iso
+        path: ./kenos.iso
