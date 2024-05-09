@@ -3,6 +3,7 @@
 #include <data/kenfetch.h>
 #include <stdbool.h>
 #include <vga.h>
+#include <serial.h>
 #define KENOUT 1
 #define SERIAL 2
 
