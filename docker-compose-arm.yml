@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-  kenos:
-    container_name: kenos
+  kenos-arm:
+    container_name: kenos-arm
     build:
       context: ./
-      dockerfile: Dockerfile-ARM
+      dockerfile: docker/arm/Dockerfile
     working_dir: /code/misc/SerialCord
     command: python3.12 main.py
     restart: unless-stopped
