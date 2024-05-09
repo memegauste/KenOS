@@ -5,7 +5,7 @@ services:
     container_name: kenos
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: docker/x64/Dockerfile
     working_dir: /code/misc/SerialCord
     command: python3.12 main.py
     restart: unless-stopped

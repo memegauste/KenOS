@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 
-FROM hoshiyamazaki/kenos-build:alphadocker
+FROM ubuntu:noble
 WORKDIR /code
 ARG DEBIAN_FRONTEND=noninteractive
 ADD . /code
-ADD ./docker-scripts.sh /code/docker-scripts.sh
+COPY docker/arm/docker-scripts.sh /code/docker-scripts.sh
 RUN chmod +x /code/docker-scripts.sh && /code/docker-scripts.sh
 
 ENV PYTHONDONTWRITEBYTECODE 1
