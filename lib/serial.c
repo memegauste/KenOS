@@ -2,6 +2,8 @@
 #define PORT 0x3f8   /* COM1 */
 #include <vga.h>
 #include <scancode.h>
+#include <irq.h>
+#include <cmd.h>
 #define SERIAL 2
 unsigned char serialCommandBuffer[70];
 unsigned short int serialPtr = 0;
