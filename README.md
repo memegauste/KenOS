@@ -23,3 +23,6 @@ Use run script. You must install qemu-system-i386 as dependency.
 
 ### I don't want to compile whole toolchain!
 Ok, understandable. Wait for release - I am also trying to prepare online build mechanism for my friends and in future alpha/beta testers.
+
+### ARM-Support
+Note, ARM building is not supported by now. You need to place x86-64 iso directly in your KenOS directory.
