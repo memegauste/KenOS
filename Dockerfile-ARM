@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM hoshiyamazaki/kenos-build:alphadocker
+FROM hoshiyamazaki/kenos-build:alphadocker-arm
 WORKDIR /code
 ARG DEBIAN_FRONTEND=noninteractive
 ADD . /code
