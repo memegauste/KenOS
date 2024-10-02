@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ubuntu:noble
+FROM alpine:3.20.3
 WORKDIR /code
 ARG DEBIAN_FRONTEND=noninteractive
 ADD . /code
