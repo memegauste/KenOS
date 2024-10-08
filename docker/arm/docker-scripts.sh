@@ -1,1 +1,1 @@
-apk add --update --no-cache python3 python3-dev qemu-system-i386
+apk add --update --no-cache qemu-system-i386
