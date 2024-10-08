@@ -14,7 +14,7 @@ class CustomHelpCommand(DefaultHelpCommand):
         self.no_category = 'General'
 
 
-desc = 'SerialCord 2023'
+desc = 'SerialCord 2024'
 intents = discord.Intents.default()
 intents.message_content = True
 activity = discord.Game('KenOS Pre-Alpha')
