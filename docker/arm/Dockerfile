@@ -13,4 +13,4 @@ ENV VIRTUAL_ENV=/opt/venv
 RUN python3.14 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN python3.14 -m pip install --upgrade pip && python3.13 -m pip install -r misc/SerialCord/requirements.txt
+RUN python3.14 -m pip install --upgrade pip && python3.14 -m pip install -r misc/SerialCord/requirements.txt
