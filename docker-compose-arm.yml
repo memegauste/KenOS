@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: docker/arm/Dockerfile
     working_dir: /code/misc/SerialCord
-    command: python3.13 main.py
+    command: python3.14 main.py
     restart: unless-stopped
     volumes:
       - .:/code
