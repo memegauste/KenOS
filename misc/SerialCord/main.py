@@ -46,7 +46,7 @@ async def get_home_ip(interaction):
         return await interaction.response.send_message(
             'Ojojoj, błędna konfiguracja :(',
         )
-    elif interaction.user.id != config.get('bot_owner_id'):
+    elif interaction.user.id != config.get('owner_bot_id'):
         return await interaction.response.send_message(
             '❌ Ta komenda jest tylko dla właściciela bota.',
             ephemeral=True,
