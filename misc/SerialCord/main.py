@@ -47,11 +47,14 @@ async def get_home_ip(interaction):
             '❌ Błędna konfiguracja serwera, nie jesteś administratorem!',
             ephemeral=True,
         )
-    elif interaction.user.id != config.get('owner_bot_id'):
+    if interaction.user.id != config.get('owner_bot_id'):
         return await interaction.response.send_message(
             '❌ Ta komenda jest tylko dla właściciela bota.',
             ephemeral=True,
         )
+
+    # odroczenie odpowiedzi
+    await interaction.response.defer(ephemeral=True)
 
     try:
         async with aiohttp.ClientSession() as session:
@@ -63,14 +66,20 @@ async def get_home_ip(interaction):
             ephemeral=True,
         )
 
+    await interaction.followup.send(
+        '📨 IP zostało wysłane w prywatnej wiadomości.',
+        ephemeral=True,
+    )
+
     try:
-        await interaction.followup.send(
-            'Zwrócono adres IP w prywatnej wiadomości.',
-            ephemeral=True,
+        await interaction.user.send(
+            f"Publiczny adres piwnicy w Gutkowie to {public_ip}"
         )
-        await interaction.user.send(f"Publiczny adres piwnicy w Gutkowie to {public_ip}")
-    except Exception as e:
-        pass
+    except:
+        await interaction.followup.send(
+            "❌ Nie udało się wysłać wiadomości prywatnej.",
+            ephemeral=True
+        )
 
 @tree.command(description='Kenify input to SerialCord')
 async def kenify(interaction, msg: str):
