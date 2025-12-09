@@ -42,7 +42,11 @@ async def on_ready():
 
 @tree.command(description='Pokaż publiczny adres IP (tylko właściciel)')
 async def get_home_ip(interaction):
-    if config.get('bot_owner_id') and interaction.user.id != config.get('bot_owner_id'):
+    if not config.get('owner_bot_id'):
+        return await interaction.response.send_message(
+            'Ojojoj, błędna konfiguracja :(',
+        )
+    elif interaction.user.id != config.get('bot_owner_id'):
         return await interaction.response.send_message(
             '❌ Ta komenda jest tylko dla właściciela bota.',
             ephemeral=True,
@@ -62,10 +66,7 @@ async def get_home_ip(interaction):
         await interaction.response.send_message('Wykonano poproszoną akcję.',)
         await interaction.user.send(f"Publiczny adres piwnicy w Gutkowie to {public_ip}")
     except Exception as e:
-        await interaction.followup.send(
-            f'❌ Nie mogłem wysłać DM: {e}',
-            ephemeral=True,
-        )
+        pass
 
 @tree.command(description='Kenify input to SerialCord')
 async def kenify(interaction, msg: str):
