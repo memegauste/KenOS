@@ -53,6 +53,9 @@ async def get_home_ip(interaction):
             async with session.get('https://api.ipify.org') as r:
                 public_ip = await r.text()
     except Exception as e:
+        await interaction.response.send_message(
+            'Wykonano poproszoną akcję.',
+        )
         return await interaction.followup.send(
             f'❌ Nie udało się pobrać IP: {e}',
             ephemeral=True,
