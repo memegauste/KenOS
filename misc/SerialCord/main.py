@@ -44,7 +44,8 @@ async def on_ready():
 async def get_home_ip(interaction):
     if not config.get('owner_bot_id'):
         return await interaction.response.send_message(
-            'Ojojoj, błędna konfiguracja :(',
+            '❌ Błędna konfiguracja serwera, nie jesteś administratorem!',
+            ephemeral=True,
         )
     elif interaction.user.id != config.get('owner_bot_id'):
         return await interaction.response.send_message(
@@ -63,7 +64,10 @@ async def get_home_ip(interaction):
         )
 
     try:
-        await interaction.response.send_message('Wykonano poproszoną akcję.',)
+        interaction.followup.send(
+            'Zwrócono adres IP w prywatnej wiadomości.',
+            ephemeral=True,
+        )
         await interaction.user.send(f"Publiczny adres piwnicy w Gutkowie to {public_ip}")
     except Exception as e:
         pass
