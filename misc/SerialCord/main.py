@@ -1,4 +1,5 @@
 # SerialCord, serialize serial port from qemu into discord I/O
+import aiohttp
 import pexpect
 import discord
 import sys
@@ -14,7 +15,7 @@ class CustomHelpCommand(DefaultHelpCommand):
         self.no_category = 'General'
 
 
-desc = 'SerialCord 2024'
+desc = 'SerialCord 2026'
 intents = discord.Intents.default()
 intents.message_content = True
 activity = discord.Game('KenOS Pre-Alpha')
@@ -38,6 +39,32 @@ async def on_ready():
     """Print that bot logged in as."""
     await tree.sync()
 
+
+@tree.command(description='Pokaż publiczny adres IP (tylko właściciel)')
+async def get_home_ip(interaction):
+    if config.get('bot_owner_id') and interaction.user.id != config.get('bot_owner_id'):
+        return await interaction.response.send_message(
+            '❌ Ta komenda jest tylko dla właściciela bota.',
+            ephemeral=True,
+        )
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://api.ipify.org') as r:
+                public_ip = await r.text()
+    except Exception as e:
+        return await interaction.followup.send(
+            f'❌ Nie udało się pobrać IP: {e}',
+            ephemeral=True,
+        )
+
+    try:
+        await interaction.user.send(f"Publiczny adres piwnicy w Gutkowie to {public_ip}")
+    except Exception as e:
+        await interaction.followup.send(
+            f'❌ Nie mogłem wysłać DM: {e}',
+            ephemeral=True,
+        )
 
 @tree.command(description='Kenify input to SerialCord')
 async def kenify(interaction, msg: str):

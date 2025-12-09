@@ -1,2 +1,3 @@
-discord.py==2.6.4
+discord.py==2.6.5
 pexpect==4.9.0
+aiohttp==3.13.2
