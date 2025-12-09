@@ -64,7 +64,7 @@ async def get_home_ip(interaction):
         )
 
     try:
-        interaction.response.send(
+        await interaction.response.send(
             'Zwrócono adres IP w prywatnej wiadomości.',
             ephemeral=True,
         )
