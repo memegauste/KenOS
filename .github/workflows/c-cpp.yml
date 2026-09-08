@@ -21,7 +21,7 @@ jobs:
       run: |
         echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
         docker pull memegauste/kenos-build:alphadocker
-        docker run -w $GITHUB_DIR -v $GITHUB_DIR:$GITHUB_DIR memegauste/kenos-build:alphadocker /bin/bash -c "make -j$(nproc) -k"
+        docker run -w $GITHUB_DIR -v $GITHUB_DIR:$GITHUB_DIR memegauste/kenos-build:alphadocker /bin/bash -c "make -j$(nproc) -k RPT_FLAGS='-ffreestanding -O2 -Wall -Wno-error'"
 
     - uses: actions/upload-artifact@v4
       name: Upload current KenOS build
