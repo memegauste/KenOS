@@ -17,14 +17,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run tests
+    - name: Build KenOS from a clean checkout
       run: |
         echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
         docker pull memegauste/kenos-build:alphadocker
-        docker run -w $GITHUB_DIR -v $GITHUB_DIR:$GITHUB_DIR memegauste/kenos-build:alphadocker /bin/bash -c "make -j$(nproc) -k RPT_FLAGS='-ffreestanding -O2 -Wall -Wno-error'"
+        docker run --rm -w "$GITHUB_DIR" -v "$GITHUB_DIR:$GITHUB_DIR" memegauste/kenos-build:alphadocker /bin/bash -ec '
+          make clean
+          make -j"$(nproc)"
+          grub-file --is-x86-multiboot kenos.bin
+        '
 
     - uses: actions/upload-artifact@v4
       name: Upload current KenOS build
       with:
         name: kenos.iso
         path: ./kenos.iso
+        if-no-files-found: error
