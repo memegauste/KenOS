@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.14.7-alpine3.24
+FROM python:3.15.0-alpine3.24
 WORKDIR /code
 ARG DEBIAN_FRONTEND=noninteractive
 ADD . /code
@@ -10,7 +10,7 @@ RUN chmod +x /code/docker-scripts.sh && /code/docker-scripts.sh
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED=1
 ENV VIRTUAL_ENV=/opt/venv
-RUN python3.14 -m venv $VIRTUAL_ENV
+RUN python3.15 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN python3.14 -m pip install --upgrade pip && python3.14 -m pip install -r misc/SerialCord/requirements.txt
+RUN python3.15 -m pip install --upgrade pip && python3.15 -m pip install -r misc/SerialCord/requirements.txt
