@@ -16,19 +16,19 @@ kenos.iso: kenos.bin
 kenos.bin: build/kernel.o build/boot.o $(OBJECTS)
 	${CC} -T linker.ld -o $@ -ffreestanding -O2 -nostdlib $^
 
-build/kernel.o: kernel.c
-	mkdir build
+build:
+	mkdir -p $@
+
+build/kernel.o: kernel.c | build
 	${CC} -c $< -o $@ -std=gnu99 ${RPT_FLAGS} -Iinclude -Wextra
 
-build/%.o: lib/%.c
+build/%.o: lib/%.c | build
 	${CC} -c $< -o $@ -std=gnu99 ${RPT_FLAGS} -Iinclude -Wextra
 
-build/boot.o: boot.asm
-	${ASM} -felf32 $? -o $@
+build/boot.o: boot.asm | build
+	${ASM} -felf32 $< -o $@
 
+.PHONY: clean
 clean:
 	rm -rf build
-	rm kenos.bin
-	rm build/*
-	rm isodir/boot/kenos.bin
-	rm kenos.iso
+	rm -f kenos.bin isodir/boot/kenos.bin kenos.iso
