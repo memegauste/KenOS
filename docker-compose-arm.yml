@@ -1,8 +1,7 @@
-version: "3"
-
 services:
   kenos-arm:
     container_name: kenos-arm
+    platform: linux/arm64
     build:
       context: ./
       dockerfile: docker/arm/Dockerfile

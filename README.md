@@ -26,3 +26,23 @@ Ok, understandable. Wait for release - I am also trying to prepare online build 
 
 ### ARM-Support
 Note, ARM building is not supported by now. You need to place x86-64 iso directly in your KenOS directory.
+
+The ARM64 Docker Compose service uses Python 3.15.1 on Alpine 3.24. Build it with:
+
+```sh
+docker compose -f docker-compose-arm.yml build kenos-arm
+```
+
+Check the interpreter and installed dependencies without starting the Discord bot:
+
+```sh
+docker compose -f docker-compose-arm.yml run --rm --no-deps kenos-arm python3.15 --version
+docker compose -f docker-compose-arm.yml run --rm --no-deps kenos-arm python3.15 -m pip check
+```
+
+To run SerialCord, provide `kenos.iso` in the repository root and
+`misc/SerialCord/config.json` with the Discord bot configuration, then run:
+
+```sh
+docker compose -f docker-compose-arm.yml up -d kenos-arm
+```
