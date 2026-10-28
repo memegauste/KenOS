@@ -27,7 +27,7 @@ Ok, understandable. Wait for release - I am also trying to prepare online build 
 ### ARM-Support
 Note, ARM building is not supported by now. You need to place x86-64 iso directly in your KenOS directory.
 
-The ARM64 Docker Compose service uses Python 3.15.1 on Alpine 3.24. Build it with:
+The ARM64 Docker Compose service uses Python 3.15.2 on Alpine 3.24. Build it with:
 
 ```sh
 docker compose -f docker-compose-arm.yml build kenos-arm
